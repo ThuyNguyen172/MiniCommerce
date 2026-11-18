@@ -1,0 +1,23 @@
+# Build output
+out/
+bin/
+target/
+build/
+*.class
+sources.txt
+
+# IntelliJ IDEA
+.idea/
+*.iml
+
+# VS Code
+.vscode/
+
+# Eclipse
+.classpath
+.project
+.settings/
+
+# OS
+.DS_Store
+Thumbs.db
