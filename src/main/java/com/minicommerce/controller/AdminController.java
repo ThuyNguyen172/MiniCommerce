@@ -16,6 +16,7 @@ import com.minicommerce.simulation.FlashSaleSimulator;
 import com.minicommerce.util.InputHelper;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
@@ -87,7 +88,7 @@ public class AdminController {
 
     private void addProduct() {
         try {
-            String id = InputHelper.readString("Product ID: ");
+            UUID id = UUID.fromString(InputHelper.readString("Product ID: "));
             String name = InputHelper.readString("Name: ");
             Category category = InputHelper.readEnum("Category (T_SHIRT/SHIRT/PANTS/JACKET/DRESS): ", Category.class);
             String description = InputHelper.readString("Description: ");
@@ -107,7 +108,7 @@ public class AdminController {
 
     private void deactivateProduct() {
         try {
-            String id = InputHelper.readString("Product ID: ");
+            UUID id = UUID.fromString(InputHelper.readString("Product ID: "));
             productService.deactivateProduct(id);
             System.out.println("Product deactivated.");
         } catch (RuntimeException ex) {

@@ -19,7 +19,7 @@ public final class ProductFilters {
     public static Predicate<Product> nameOrIdContains(String keyword) {
         String key = keyword == null ? "" : keyword.trim().toLowerCase();
         return p -> p.getName().toLowerCase().contains(key)
-                || p.getId().toLowerCase().contains(key);  // lambda capture biến "effectively final"
+                || p.getId().toString().toLowerCase().contains(key);  // lambda capture biến "effectively final"
     }
 
     public static Predicate<Product> inCategory(Category category) {

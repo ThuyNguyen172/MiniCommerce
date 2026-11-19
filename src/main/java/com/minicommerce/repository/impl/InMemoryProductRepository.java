@@ -2,10 +2,8 @@ package com.minicommerce.repository.impl;
 
 import com.minicommerce.entity.Product;
 import com.minicommerce.repository.ProductRepository;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
 // [Session 3 - OOP] Polymorphism: class implements interface ProductRepository.
@@ -13,10 +11,10 @@ public class InMemoryProductRepository implements ProductRepository {
     // [Session 6] ConcurrentHashMap thay cho LinkedHashMap để đọc/ghi an toàn từ nhiều thread.
     // [Session 5 - Map] Map<id, Product>: tra cứu theo ID O(1) thay vì duyệt List.
     // Map<UUID, Product>
-    private final Map<String, Product> products = new ConcurrentHashMap<>();
+    private final Map<UUID, Product> products = new ConcurrentHashMap<>();
 
     @Override
-    public Optional<Product> findById(String id) {
+    public Optional<Product> findById(UUID id) {
         return Optional.ofNullable(products.get(id));
     }
 

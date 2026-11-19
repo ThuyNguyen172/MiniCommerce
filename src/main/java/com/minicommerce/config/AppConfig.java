@@ -30,6 +30,8 @@ import com.minicommerce.service.impl.ProductServiceImpl;
 import com.minicommerce.service.impl.ReportServiceImpl;
 import com.minicommerce.simulation.FlashSaleSimulator;
 
+import java.util.UUID;
+
 // [Session 3 - SOLID] Composition root: nơi DUY NHẤT biết class cụ thể nào được dùng và "lắp ráp" chúng (manual DI).
 // Đổi InMemory -> Jdbc repository chỉ cần sửa ở đây.
 // [Session 3 - OOP] Polymorphism: biến kiểu interface, object kiểu implementation.
@@ -73,19 +75,19 @@ public class AppConfig {
         userRepository.save(new User("USR-DEMO", "demo", "demo123", UserRole.CUSTOMER));
         userRepository.save(new User("USR-ADMIN", "admin", "admin123", UserRole.ADMIN));
 
-        Product tshirt = new Product("P001", "Basic Cotton T-shirt", Category.T_SHIRT,
+        Product tshirt = new Product(UUID.randomUUID(), "Basic Cotton T-shirt", Category.T_SHIRT,
                 "Everyday cotton T-shirt.");
         tshirt.addVariant(new ProductVariant("TS-BLK-M", ProductSize.M, ProductColor.BLACK, 159000, 20));
         tshirt.addVariant(new ProductVariant("TS-WHT-L", ProductSize.L, ProductColor.WHITE, 159000, 12));
         productService.addProduct(tshirt);
 
-        Product shirt = new Product("P002", "Oxford Shirt", Category.SHIRT,
+        Product shirt = new Product(UUID.randomUUID(), "Oxford Shirt", Category.SHIRT,
                 "Smart-casual Oxford shirt.");
         shirt.addVariant(new ProductVariant("SH-BLU-M", ProductSize.M, ProductColor.BLUE, 299000, 8));
         shirt.addVariant(new ProductVariant("SH-BEI-L", ProductSize.L, ProductColor.BEIGE, 319000, 5));
         productService.addProduct(shirt);
 
-        Product dress = new Product("P003", "Everyday Dress", Category.DRESS,
+        Product dress = new Product(UUID.randomUUID(), "Everyday Dress", Category.DRESS,
                 "Comfortable dress for everyday wear.");
         dress.addVariant(new ProductVariant("DR-RED-S", ProductSize.S, ProductColor.RED, 399000, 6));
         productService.addProduct(dress);

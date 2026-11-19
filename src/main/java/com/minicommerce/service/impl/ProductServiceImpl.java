@@ -9,6 +9,7 @@ import com.minicommerce.service.ProductService;
 import com.minicommerce.util.ProductFilters;
 import java.util.Comparator;
 import java.util.List;
+import java.util.UUID;
 import java.util.function.Predicate;
 
 public class ProductServiceImpl implements ProductService {
@@ -19,7 +20,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Product getProductById(String id) {
+    public Product getProductById(UUID id) {
         return productRepository.findById(id)
                 .orElseThrow(() -> new ProductNotFoundException("Product not found: " + id));
     }
@@ -60,7 +61,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public void addProduct(Product product) {
-        if (product == null || product.getId() == null || product.getId().isBlank())
+        if (product == null || product.getId() == null)
             // [Session 5 - Exception] Fail-fast: validate đầu vào, ném IllegalArgumentException (exception có sẵn của Java).
             throw new IllegalArgumentException("Product and product ID are required.");
         if (productRepository.findById(product.getId()).isPresent())
@@ -82,14 +83,14 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public void deactivateProduct(String id) {
+    public void deactivateProduct(UUID id) {
         Product product = getProductById(id);
         product.setActive(false);
         productRepository.save(product);
     }
 
     @Override
-    public void addVariant(String productId, ProductVariant variant) {
+    public void addVariant(UUID productId, ProductVariant variant) {
         Product product = getProductById(productId);
         if (productRepository.findBySku(variant.getSku()).isPresent())
             throw new IllegalArgumentException("SKU already exists: " + variant.getSku());

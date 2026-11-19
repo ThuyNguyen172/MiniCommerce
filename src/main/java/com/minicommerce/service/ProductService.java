@@ -5,10 +5,11 @@ import com.minicommerce.entity.ProductVariant;
 import com.minicommerce.entity.enums.Category;
 import java.util.Comparator;
 import java.util.List;
+import java.util.UUID;
 import java.util.function.Predicate;
 
 public interface ProductService {
-    Product getProductById(String id);
+    Product getProductById(UUID id);
     Product getProductBySku(String sku);
     List<Product> getAllActiveProducts();
     List<Product> searchProducts(String keyword);
@@ -18,6 +19,6 @@ public interface ProductService {
     List<Product> filterProducts(Predicate<Product> criteria, Comparator<Product> sortOrder);
     void addProduct(Product product);
     void updateProduct(Product product);
-    void deactivateProduct(String id);
-    void addVariant(String productId, ProductVariant variant);
+    void deactivateProduct(UUID id);
+    void addVariant(UUID productId, ProductVariant variant);
 }

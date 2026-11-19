@@ -4,10 +4,11 @@ import com.minicommerce.entity.enums.Category;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.OptionalLong;
+import java.util.UUID;
 
 // [Session 3 - OOP] Encapsulation: field private, truy cập qua getter/setter. Composition: Product "has-a" List<ProductVariant>.
 public class Product {
-    private String id;
+    private UUID id;
     private String name;
     private Category category;
     private String description;
@@ -17,7 +18,7 @@ public class Product {
 
     public Product() {}
 
-    public Product(String id, String name, Category category, String description) {
+    public Product(UUID id, String name, Category category, String description) {
         this.id = id;
         this.name = name;
         this.category = category;
@@ -25,8 +26,8 @@ public class Product {
         this.active = true;
     }
 
-    public String getId() { return id; }
-    public void setId(String id) { this.id = id; }
+    public UUID getId() { return id; }
+    public void setId(UUID id) { this.id = id; }
     public String getName() { return name; }
     public void setName(String name) { this.name = name; }
     public Category getCategory() { return category; }

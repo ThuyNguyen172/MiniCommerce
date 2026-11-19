@@ -9,6 +9,7 @@ import com.minicommerce.util.ProductFilters;
 import com.minicommerce.util.ProductSortOption;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 import java.util.function.Predicate;
 import java.util.stream.Stream;
 
@@ -23,7 +24,7 @@ public class ProductController {
     }
 
     public void showProductDetails() {
-        String id = InputHelper.readString("Product ID: ");
+        UUID id = UUID.fromString(InputHelper.readString("Product ID: "));
         try {
             Product product = productService.getProductById(id);
             System.out.println(product);
